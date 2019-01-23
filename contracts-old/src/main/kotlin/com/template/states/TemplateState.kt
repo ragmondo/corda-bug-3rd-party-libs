@@ -5,17 +5,12 @@ import net.corda.core.contracts.BelongsToContract
 import net.corda.core.contracts.ContractState
 import net.corda.core.identity.AbstractParty
 import org.joda.money.Money
-import com.template.states.TemplateState as OldTemplateState
 
 // *********
 // * State *
 // *********
 @BelongsToContract(TemplateContract::class)
-data class TemplateState(val data: String,
-                         val money: Money = Money.parse("USD 0"),
-                         override val participants: List<AbstractParty> = listOf()) :
-        ContractState
+data class TemplateState(val data: String, val money: Money = Money.parse("USD 0"),  override val participants: List<AbstractParty> = listOf()) : ContractState
 {
-
     val m = Money.parse("GBP 1")
 }

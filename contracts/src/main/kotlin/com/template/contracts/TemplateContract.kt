@@ -1,13 +1,24 @@
 package com.template.contracts
 
-import net.corda.core.contracts.CommandData
-import net.corda.core.contracts.Contract
+import com.template.states.TemplateState
+import net.corda.core.contracts.*
 import net.corda.core.transactions.LedgerTransaction
-
+import com.template.states.TemplateState as OldTemplateState
 // ************
 // * Contract *
 // ************
-class TemplateContract : Contract {
+class TemplateContract : Contract, UpgradedContractWithLegacyConstraint<OldTemplateState, TemplateState> {
+    override val legacyContractConstraint: AttachmentConstraint
+        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+    override val legacyContract: ContractClassName
+        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+
+    override fun upgrade(state: OldTemplateState): TemplateState {
+        val ts = TemplateState(state.data, state.money)
+        ts.javaClass.`package`.implementationVersion
+        return ts
+    }
+
     companion object {
         // Used to identify our contract when building a transaction.
         const val ID = "com.template.contracts.TemplateContract"

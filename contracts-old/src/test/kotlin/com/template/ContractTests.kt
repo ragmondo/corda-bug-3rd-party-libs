@@ -10,10 +10,8 @@ class ContractTests {
     private val ledgerServices = MockServices()
 
     // The VES currency exists in 1.0.1 but not in 0.9
-    @Test
+    @Test(expected = org.joda.money.IllegalCurrencyException::class)
     fun VESCurrencyTest() {
         val m = Money.parse("VES 1")
     }
-
-
 }
