@@ -1,6 +1,7 @@
 package com.template.flows
 
 import co.paralleluniverse.fibers.Suspendable
+import com.template.states.TemplateState
 import net.corda.core.flows.*
 import net.corda.core.utilities.ProgressTracker
 
@@ -14,6 +15,8 @@ class Initiator : FlowLogic<Unit>() {
 
     @Suspendable
     override fun call() {
+        val ts = TemplateState("test")
+        println(ts)
         // Initiator flow logic goes here.
     }
 }
